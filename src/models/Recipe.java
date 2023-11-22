@@ -1,23 +1,54 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class Recipe {
+
+    private static int idTracking = 0;
     //list of ingredients needed for the recipe
-    ArrayList<Ingredient> ingredientList;
+    private ArrayList<Ingredient> ingredientList;
+    //probably need to switch a map so I can keep ingredient quantity
+    private ArrayList<HashMap<Ingredient, Double>> ingredientList2;
 
     //list of steps to prepare recipe
-    ArrayList<String> directionList;
+    private ArrayList<String> directionList;
 
     //name of recipe
-    String recipeName;
+    private String recipeName;
 
-    int servingSize;
+    private int servingSize;
+
+    private Macro totalMacros;
+
+    private Macro servingMacros;
 
     //FUTURE - Prep time, cook time, total cook time
 
 
+    public Recipe(String recipeName, int servingSize) {
+        this.recipeName = recipeName;
+        this.servingSize = servingSize;
+    }
 
+    public void addIngredient(Ingredient ingredient, double ingredientQty) {
+        Macro updatedMacros = Macro.macroFactory(ingredient.getMacros(), ingredientQty);
+        Ingredient updatedIngredient = new Ingredient(ingredient.getIngredientName(), ingredient.getServingWeight(), updatedMacros);
+        ingredientList.add(updatedIngredient);
+
+    }
+
+    public void addStep(String s) {
+        directionList.add(s);
+    }
+
+    public void printRecipe() {
+        System.out.println(recipeName.toUpperCase());
+        System.out.println("Serves: " + servingSize);
+        System.out.println("Ingredients needed:");
+
+    }
 
 
 }

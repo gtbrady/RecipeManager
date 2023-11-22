@@ -3,18 +3,43 @@ package models;
 //Need to figure out a way to make class abstract so I can subclass it
 public class Ingredient {
     //using static int variable to initialize ID temporarily
-    static int idTracking = 0;
+    private static int idTracking = 0;
 
     //name of ingredient
-    String ingredientName;
+    private String ingredientName;
 
     //Serving Size in grams
-    float servingWeight;
+    private double servingWeight;
 
-    //below fields are predicated on serving size
+    private Macro macros;
 
+    public Ingredient(String ingredientName, double servingWeight, Macro macros) {
+        this.ingredientName = ingredientName;
+        this.servingWeight = servingWeight;
+        this.macros = Macro.macroFactory(macros);
+    }
 
+    public String getIngredientName() {
+        return ingredientName;
+    }
 
-    //standard constructor for adding to ingredient database
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
 
+    public double getServingWeight() {
+        return servingWeight;
+    }
+
+    public void setServingWeight(double servingWeight) {
+        this.servingWeight = servingWeight;
+    }
+
+    public Macro getMacros() {
+        return macros;
+    }
+
+    public void setMacros(Macro macros) {
+        this.macros = macros;
+    }
 }
