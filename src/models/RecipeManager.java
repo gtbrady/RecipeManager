@@ -1,9 +1,20 @@
 package models;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class RecipeManager {
 
-    public static void main(String[] args) {
+    RecipeManager() {
+        JFrame jframe = new JFrame();
+        jframe.setLayout(new FlowLayout());
+        jframe.setTitle("Recipe Manager");
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.setSize(800,600);
+        jframe.setVisible(true);
+    }
 
+    public static void testData() {
         //testing app logic prior to GUI
         //user will enter ingredient name and macros for ingredient on ingredient screen
         Macro eggMacros = new Macro(78, 0.6, 6, 5);
@@ -48,5 +59,16 @@ public class RecipeManager {
 
 
         deviledEggs.printRecipe();
+
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new RecipeManager();
+            }
+        });
+
     }
 }
