@@ -11,11 +11,25 @@ public class Ingredient {
     //Serving Size in grams
     private double servingWeight;
 
+    private double ingredientQty;
+
+
+
     private Macro macros;
 
+    //constructor used when adding to recipe
+    public Ingredient(String ingredientName, double servingWeight, double ingredientQty, Macro macros) {
+        this.ingredientName = ingredientName;
+        this.servingWeight = servingWeight;
+        this.ingredientQty = ingredientQty;
+        this.macros = Macro.macroFactory(macros);
+    }
+
+    //constructor used for adding ingredients to ingredient table
     public Ingredient(String ingredientName, double servingWeight, Macro macros) {
         this.ingredientName = ingredientName;
         this.servingWeight = servingWeight;
+        this.ingredientQty = 1;
         this.macros = Macro.macroFactory(macros);
     }
 
@@ -42,4 +56,13 @@ public class Ingredient {
     public void setMacros(Macro macros) {
         this.macros = macros;
     }
+
+    public double getIngredientQty() {
+        return ingredientQty;
+    }
+
+    public void setIngredientQty(double ingredientQty) {
+        this.ingredientQty = ingredientQty;
+    }
+
 }

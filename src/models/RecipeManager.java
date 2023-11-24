@@ -14,10 +14,6 @@ public class RecipeManager {
         Ingredient mayo = new Ingredient("Mayonnaise", 14, mayoMacros);
         Ingredient mustard = new Ingredient("Mustard", 5, mustardMacros);
 
-        //once ingredients are added to table, user can begin creating recipe
-
-        Recipe deviledEggs = new Recipe("Deviled Eggs", 6);
-
 
         String step1 = "Bring a pot of water to a boil. Reduce the heat to low (or off) to ensure " +
                 "the water is no longer boiling or has bubbles and use a skimmer to place the eggs " +
@@ -36,5 +32,21 @@ public class RecipeManager {
                 " white. Sprinkle on paprika for garnish.";
 
 
+        //once ingredients are added to table, user can begin creating recipe
+
+        Recipe deviledEggs = new Recipe("Deviled Eggs", 6);
+        deviledEggs.addIngredient(egg, 6);
+        deviledEggs.addIngredient(mayo, 3.0);
+        deviledEggs.addIngredient(mustard, 1.0);
+
+        deviledEggs.addStep(step1);
+        deviledEggs.addStep(step2);
+        deviledEggs.addStep(step3);
+        deviledEggs.addStep(step4);
+        deviledEggs.addStep(step5);
+
+
+
+        deviledEggs.printRecipe();
     }
 }

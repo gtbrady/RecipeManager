@@ -9,8 +9,7 @@ public class Recipe {
     private static int idTracking = 0;
     //list of ingredients needed for the recipe
     private ArrayList<Ingredient> ingredientList;
-    //probably need to switch a map so I can keep ingredient quantity
-    private ArrayList<HashMap<Ingredient, Double>> ingredientList2;
+
 
     //list of steps to prepare recipe
     private ArrayList<String> directionList;
@@ -30,13 +29,16 @@ public class Recipe {
     public Recipe(String recipeName, int servingSize) {
         this.recipeName = recipeName;
         this.servingSize = servingSize;
+        this.ingredientList = new ArrayList<>();
+        this.directionList = new ArrayList<>();
     }
 
     public void addIngredient(Ingredient ingredient, double ingredientQty) {
         Macro updatedMacros = Macro.macroFactory(ingredient.getMacros(), ingredientQty);
-        Ingredient updatedIngredient = new Ingredient(ingredient.getIngredientName(), ingredient.getServingWeight(), updatedMacros);
-        ingredientList.add(updatedIngredient);
+        Ingredient updatedIngredient = new Ingredient(ingredient.getIngredientName(),
+                ingredient.getServingWeight(), ingredientQty ,updatedMacros);
 
+        ingredientList.add(updatedIngredient);
     }
 
     public void addStep(String s) {
@@ -46,8 +48,16 @@ public class Recipe {
     public void printRecipe() {
         System.out.println(recipeName.toUpperCase());
         System.out.println("Serves: " + servingSize);
+        System.out.println();
         System.out.println("Ingredients needed:");
-
+        for (Ingredient i : this.ingredientList) {
+            System.out.println(i.getIngredientQty() + " " + i.getIngredientName());
+        }
+        System.out.println();
+        int i = 1;
+        for (String s : this.directionList) {
+            System.out.println(i++ + ": " + s);
+        }
     }
 
 
